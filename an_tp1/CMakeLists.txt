@@ -10,13 +10,15 @@ cmake_minimum_required(VERSION 3.4)
 set(aa_tp1_TARGET_NAME aa_tp1)
 
 include_directories(${DEPS_INCLUDE_DIC})
-include_directories(${ASIO_INCLUDE_DIC})
+#include_directories(${ASIO_INCLUDE_DIC})
+include_directories(${CAF_INCLUDE_DIC})
 include_directories(${BOOST_INCLUDE_DIC})
 include_directories(${GTEST_INCLUDE_DIC})
 include_directories(.)
 
 message("aa_tp1 BOOST_INCLUDE_DIC = ${BOOST_INCLUDE_DIC}")
-message("aa_tp1 ASIO_INCLUDE_DIC = ${ASIO_INCLUDE_DIC}")
+#message("aa_tp1 ASIO_INCLUDE_DIC = ${ASIO_INCLUDE_DIC}")
+message("aa_tp1 CAF_INCLUDE_DIC = ${CAF_INCLUDE_DIC}")
 
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
@@ -27,6 +29,7 @@ aux_source_directory(. SRCS_DIR)
 
 link_directories(${BOOST_LIB_DIC})
 link_directories(${GTEST_LIB_DIC})
+link_directories(${CAF_LIB_DIC})
 #link_libraries(${TCMALLOC_LIB})
 add_executable(${aa_tp1_TARGET_NAME} ${SRCS_DIR})
 

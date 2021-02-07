@@ -14,7 +14,7 @@ endif()
 
 cmake_minimum_required(VERSION 3.4)
 
-project(antt_1 VERSION 1.0.0.0)
+project(anCAF VERSION 1.0.0.0)
 message("CMAKE_PROJECT_NAME = ${CMAKE_PROJECT_NAME}")
 message("PROJECT_VERSION = ${PROJECT_VERSION}")
 message("PROJECT_VERSION_MAJOR = ${PROJECT_VERSION_MAJOR}")
@@ -28,6 +28,7 @@ if(NOT CMAKE_BUILD_TYPE)
     #SET(CMAKE_BUILD_TYPE Debug)
 endif()
 message("${CMAKE_PROJECT_NAME} BUILD_TYPE = ${CMAKE_BUILD_TYPE}")
+message("cmake_module_path: " ${CMAKE_MODULE_PATH})
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -48,16 +49,27 @@ endif()
 set (GTEST_ROOT "/usr/local/gtest")
 find_package(GTest REQUIRED)
 if (GTEST_FOUND)
-    message("GTest found. ${GTEST_INCLUDE_DIRS} ${GTEST_LIBRARY_DIRS} ${GTEST_LIBRARIES}")
+    message("GTest found.  ${GTEST_INCLUDE_DIRS} ${GTEST_LIBRARY_DIRS} ${GTEST_LIBRARIES}")
     set(GTEST_INCLUDE_DIC "${GTEST_INCLUDE_DIRS}")
     set(GTEST_LIB_DIC "${GTEST_ROOT}/lib")
 else()
     message(FATAL_ERROR "GTest not found.")
 endif()
 
+#CAF lib
+set(CAF_ROOT "/usr/local/CAF")
+find_package(CAF REQUIRED)
+if (CAF_FOUND)
+	message("CAF found. ${CAF_INCLUDE_DIR} ${CAF_LIBRARY_DIR} ${CAF_LIBRARIES}")
+    set(CAF_INCLUDE_DIC "${CAF_ROOT}/inlcude")
+    set(CAF_LIB_DIC "${CAF_ROOT}/lib")
+else()
+	message(FATAL_ERROR "CAF not found.")
+endif()
+
 
 set(DEPS_INCLUDE_DIC "${PROJECT_SOURCE_DIR}/deps/include")
-set(ASIO_INCLUDE_DIC "${PROJECT_SOURCE_DIR}/deps/asio-1.18.0/include")
+#set(ASIO_INCLUDE_DIC "${PROJECT_SOURCE_DIR}/deps/asio-1.18.0/include")
 #set(BOOST_INCLUDE_DIC "${PROJECT_SOURCE_DIR}/deps/boost_1_75_0/include")
 #set(BOOST_LIB_DIC "${PROJECT_SOURCE_DIR}/deps/boost_1_75_0/lib/")
 #set(GTEST_INCLUDE_DIC "${PROJECT_SOURCE_DIR}/deps/gtest/include")
@@ -92,7 +104,9 @@ endif()
 #set(CRYPTO_LIB "${PROJECT_SOURCE_DIR}/deps/openssl_1_1_1g/lib/libcrypto.a")
 
 
-message("ASIO_INCLUDE_DIC = ${ASIO_INCLUDE_DIC}")
+#message("ASIO_INCLUDE_DIC = ${ASIO_INCLUDE_DIC}")
+message("CAF_INCLUDE_DIC = ${CAF_INCLUDE_DIC}")
+message("CAF_LIB_DIC = ${CAF_LIB_DIC}")
 message("BOOST_INCLUDE_DIC = ${BOOST_INCLUDE_DIC}")
 message("BOOST_LIB_DIC = ${BOOST_LIB_DIC}")
 message("GTEST_INCLUDE_DIC = ${GTEST_INCLUDE_DIC}")
@@ -150,4 +164,4 @@ else()
 
 endif()
 
-add_subdirectory(aa_tp1)
+add_subdirectory(an_tp1)
